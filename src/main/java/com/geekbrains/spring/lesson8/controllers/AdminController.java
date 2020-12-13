@@ -113,4 +113,10 @@ public class AdminController {
         orderService.remove(id);
         return "redirect:/orders";
     }
+
+    @GetMapping("/users")
+    public String users () {
+
+        return "users";
+    }
 }
