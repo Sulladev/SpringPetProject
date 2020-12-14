@@ -73,15 +73,15 @@ public class SampleData {
         user3.setName("anonymousUser");
         user3.getRoles().add(role1);
 
-//        User user4 = new User();
-//        user4.setUsername("manager");
-//        user4.setName("manager");
-//        //user4.setPassword("{bcrypt}$2y$12$kppL/79H63sx3NoXlZhY/uDW2EiB18ByX8YeENyFwyxAnHjrCT4pK");
-//        user4.setPassword("$2y$12$sEUvtSyWJ/kW8gPUBnjVoeK.HZNrJqV12OE64WgLQWDSyqyqr4Vwu");
-////        user4.getRoles().add(role1);
-////        user4.getRoles().add(role2);
-////        user4.getRoles().add(role3);
-//        user4.getRoles().add(role4);
+        User user4 = new User();
+        user4.setUsername("manager");
+        user4.setName("manager");
+        //user4.setPassword("{bcrypt}$2y$12$kppL/79H63sx3NoXlZhY/uDW2EiB18ByX8YeENyFwyxAnHjrCT4pK");
+        user4.setPassword("$2y$12$sEUvtSyWJ/kW8gPUBnjVoeK.HZNrJqV12OE64WgLQWDSyqyqr4Vwu");
+//        user4.getRoles().add(role1);
+//        user4.getRoles().add(role2);
+//        user4.getRoles().add(role3);
+        user4.getRoles().add(role4);
 
         Order order1 = new Order();
         order1.setTotalPrice(product1.getPrice());
@@ -117,11 +117,12 @@ public class SampleData {
         roleRepository.save(role1);
         roleRepository.save(role2);
         roleRepository.save(role3);
+        roleRepository.save(role4);
 
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
-//        userRepository.save(user4);
+        userRepository.save(user4);
 
         orderRepository.save(order1);
         orderRepository.save(order2);

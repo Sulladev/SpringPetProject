@@ -3,6 +3,7 @@ package com.geekbrains.spring.lesson8.configs;
 import com.geekbrains.spring.lesson8.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-@EnableWebSecurity//(debug = true)
+@EnableWebSecurity(debug = true)
 //@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -34,8 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
-                .antMatchers("/admin/products/").hasRole("MANAGER")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN", "MANAGER")
                 .antMatchers("/cart/createOrder**").authenticated()
                 .antMatchers("/registration**").anonymous()
                 .anyRequest().permitAll()
