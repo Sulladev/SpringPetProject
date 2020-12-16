@@ -1,6 +1,7 @@
 package com.geekbrains.spring.lesson8.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.context.annotation.Scope;
 
 import javax.persistence.*;
 import java.util.ArrayList;
