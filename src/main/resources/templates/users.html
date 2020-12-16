@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Каталог товаров</title>
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/navigation :: navigation(Users)}" />
+    <h1>Users</h1>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Name</th>
+            <th>Roles</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.username}"/>
+            <td th:text="${u.password}"/>
+            <td th:text="${u.name}"/>
+            <td th:text="${u.roles}"/>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

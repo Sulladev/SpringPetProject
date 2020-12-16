@@ -2,9 +2,11 @@ package com.geekbrains.spring.lesson8.controllers;
 
 import com.geekbrains.spring.lesson8.entities.Order;
 import com.geekbrains.spring.lesson8.entities.Product;
+import com.geekbrains.spring.lesson8.entities.User;
 import com.geekbrains.spring.lesson8.exceptions.ResourceNotFoundException;
 import com.geekbrains.spring.lesson8.services.OrderService;
 import com.geekbrains.spring.lesson8.services.ProductService;
+import com.geekbrains.spring.lesson8.services.UserService;
 import com.geekbrains.spring.lesson8.utils.OrderFilter;
 import com.geekbrains.spring.lesson8.utils.ProductFilter;
 import org.springframework.data.domain.Page;
@@ -26,13 +28,15 @@ public class AdminController {
 
     private ProductService productService;
     private OrderService orderService;
+    private UserService userService;
 
-    public AdminController(ProductService productService, OrderService orderService) {
+    public AdminController(ProductService productService, OrderService orderService, UserService userService) {
         this.productService = productService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @GetMapping("/products")
     public String showAllProducts(Model model,
                                   @RequestParam(defaultValue = "1", name = "p") Integer page,
@@ -112,5 +116,12 @@ public class AdminController {
     ) {
         orderService.remove(id);
         return "redirect:/orders";
+    }
+
+    @GetMapping("/users")
+    public String users ( Model model) {
+       List<User> users = userService.findAllUsers();
+        model.addAttribute("users", users);
+        return "users";
     }
 }

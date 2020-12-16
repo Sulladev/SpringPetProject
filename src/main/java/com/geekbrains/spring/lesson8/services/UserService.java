@@ -33,22 +33,27 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+
+    }
+
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         System.out.println("userService = " + principal);
         System.out.println("userService name = " + principal.getName());
         return findByUsername(principal.getName());
     }
 
-    public User getOne(Long id){
+    public User getOne(Long id) {
         return userRepository.getOne(id);
     }
 
-    public User createUser(UserData userData){
+    public User createUser(UserData userData) {
         User user = new User();
         user.setName(userData.getName());
         user.setUsername(userData.getUsername());
@@ -58,7 +63,7 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public void authenticateUser(User user){
+    public void authenticateUser(User user) {
         List<Role> roles = user.getRoles().stream().distinct().collect(Collectors.toList());
         List<GrantedAuthority> authorities = roles.stream()
                 .map(p -> new SimpleGrantedAuthority(p.getName()))
